@@ -1,0 +1,9 @@
+name = "engagement-diversity-experiment"
+
+[tajriba.auth]
+srtoken = "rOjyLquBWNDGMjng"
+
+[[tajriba.auth.users]]
+name = "Admin"
+username = "admin"
+password = "UmZwphQU"
