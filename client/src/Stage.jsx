@@ -2,16 +2,17 @@ import {
   usePlayer,
   usePlayers,
   useRound,
+  useStage,
 } from "@empirica/core/player/classic/react";
 import { Loading } from "@empirica/core/player/react";
 import React from "react";
-import { JellyBeans } from "./examples/JellyBeans";
-import { MineSweeper } from "./examples/MineSweeper";
+import PickYourPreference from "./examples/PickYourPreference";
 
 export function Stage() {
   const player = usePlayer();
   const players = usePlayers();
   const round = useRound();
+  const stage = useStage();
 
   if (player.stage.get("submit")) {
     if (players.length === 1) {
@@ -25,12 +26,9 @@ export function Stage() {
     );
   }
 
-  switch (round.get("task")) {
-    case "jellybeans":
-      return <JellyBeans />;
-    case "minesweeper":
-      return <MineSweeper />;
-    default:
-      return <div>Unknown task</div>;
+  if (stage.get("name")) {
+    return <PickYourPreference order={parseInt(stage.get("name"), 10)} />;
+  } else {
+    return <Loading />;
   }
 }

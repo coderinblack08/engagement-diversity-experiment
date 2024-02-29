@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../components/Button";
+import { Button } from "../components/ui/button";
 
 export function Introduction({ next }) {
   return (
@@ -9,12 +9,11 @@ export function Introduction({ next }) {
       </h3>
       <div className="mt-2 mb-6">
         <p className="text-sm text-gray-500">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius aliquam
-          laudantium explicabo pariatur iste dolorem animi vitae error totam. At
-          sapiente aliquam accusamus facere veritatis.
+          In this game, there will be multiple rounds. In each round, you will
+          select the most appealing/interesting option from a set of five.
         </p>
       </div>
-      <Button handleClick={next} autoFocus>
+      <Button onClick={next} autoFocus>
         <p>Next</p>
       </Button>
     </div>
