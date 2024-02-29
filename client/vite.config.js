@@ -2,7 +2,7 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 import { resolve } from "path";
 import { defineConfig, searchForWorkspaceRoot } from "vite";
 import restart from "vite-plugin-restart";
-import UnoCSS from "unocss/vite";
+// import UnoCSS from "unocss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,7 +33,7 @@ export default defineConfig({
         "./node_modules/@empirica/core/assets/**/*.css",
       ],
     }),
-    UnoCSS(),
+    // UnoCSS(),
     reactRefresh(),
   ],
   define: {

@@ -9,11 +9,15 @@ factors:
       - value: 8
       - value: 13
 treatments:
-  - desc: "Single-player Game"
+  - desc: Collaborative Filtering
     factors:
       playerCount: 1
-    name: Solo
-  - desc: "Two-player Game"
+    name: collaborative-filtering
+  - desc: Content Based Filtering
     factors:
-      playerCount: 2
-    name: Two Players
+      playerCount: 1
+    name: content-based-filtering
+  - desc: Popularity Based Filtering
+    factors:
+      playerCount: 1
+    name: popularity-based-filtering

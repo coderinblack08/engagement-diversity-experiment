@@ -14,17 +14,13 @@ Empirica.onGameStart(({ game }) => {
   //   task: "minesweeper",
   // });
   // round2.addStage({ name: "Play", duration: 300 });
-  const round1 = game.addRound({
-    name: "Round 1 - Personalized",
-    task: "personalized",
-  })
-  round1.addStage({ name: "Answer", duration: 600 });
-
-  const round2 = game.addRound({
-    name: "Round 2 - Generic",
-    task: "generic",
-  })
-  round2.addStage({ name: "Answer", duration: 600 });
+  const round = game.addRound({
+    name: "Round - Pick Your Preference",
+    task: "pick-your-preference",
+  });
+  for (let i = 1; i <= 5; i++) {
+    round.addStage({ name: `q${i}`, duration: 30000000 });
+  }
 });
 
 Empirica.onRoundStart(({ round }) => {});
