@@ -8,3 +8,15 @@ run it in 2 rounds
 1st round trains 2nd round
 
 checkup on what we store in empirica
+
+---
+
+with backend:
+
+- download images to get embeddings
+
+with empirica:
+
+- put age and gender at front
+- put rest of survey at end
+- find web hosting services

@@ -6,8 +6,19 @@ Empirica.onGameStart(({ game }) => {
     name: "Round",
     task: "pick-your-preference",
   });
-  for (let i = 1; i <= 5; i++) {
-    round.addStage({ name: i, duration: 180 });
+  // FIX
+  const treatment = game.get("treatment");
+  for (let i = 1; i <= 10; i++) {
+    if (name === "content-based-filtering") {
+      round.addStage({
+        name: i,
+        method: i === 1 ? "random" : "content",
+        duration: 180,
+      });
+    }
+    if (name === "random-based-filtering") {
+      round.addStage({ name: i, method: "random", duration: 180 });
+    }
   }
 });
 

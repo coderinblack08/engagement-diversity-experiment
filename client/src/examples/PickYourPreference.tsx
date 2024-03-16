@@ -1,43 +1,21 @@
-import {
-  usePlayer,
-  usePlayers,
-  useStage,
-} from "@empirica/core/player/classic/react";
-import React, { useState } from "react";
+import { usePlayer, useStage } from "@empirica/core/player/classic/react";
 import { RadioGroup } from "@headlessui/react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import { Button } from "../components/ui/button";
 
-interface PickYourPreferenceProps {}
+interface PickYourPreferenceProps {
+  method: string;
+}
 
-const options = [
-  {
-    name: "Option 1",
-    ram: "12GB",
-    cpus: "6 CPUs",
-    disk: "160 GB SSD disk",
-  },
-  {
-    name: "Option 2",
-    ram: "16GB",
-    cpus: "8 CPUs",
-    disk: "512 GB SSD disk",
-  },
-  {
-    name: "Option 3",
-    ram: "32GB",
-    cpus: "12 CPUs",
-    disk: "1024 GB SSD disk",
-  },
-];
-
-const PickYourPreference: React.FC<PickYourPreferenceProps> = () => {
+const PickYourPreference: React.FC<PickYourPreferenceProps> = ({ method }) => {
   const player = usePlayer();
-  const players = usePlayers();
   const stage = useStage();
+  const query = useQuery<any[]>({ queryKey: [`/${method}`] });
   const [selected, setSelected] = useState(null);
 
-  function onClick(choice) {
-    player.round.set("decision", choice);
+  function onClick() {
+    player.round.set("decision", selected);
     player.stage.set("submit", true);
   }
 
@@ -47,10 +25,10 @@ const PickYourPreference: React.FC<PickYourPreferenceProps> = () => {
         <RadioGroup value={selected} onChange={setSelected}>
           <RadioGroup.Label className="sr-only">Server size</RadioGroup.Label>
           <div className="space-y-2 grid grid-cols-3 gap-4">
-            {options.map((plan) => (
+            {query.data?.map((art) => (
               <RadioGroup.Option
-                key={plan.name}
-                value={plan}
+                key={art.title}
+                value={art.id}
                 className={({ active, checked }) =>
                   `${active ? "ring-2 ring-zinc-300" : ""}
                   ${checked ? "bg-zinc-900 text-white" : "bg-white"}
@@ -68,19 +46,10 @@ const PickYourPreference: React.FC<PickYourPreferenceProps> = () => {
                               checked ? "text-white" : "text-zinc-900"
                             }`}
                           >
-                            {plan.name}
+                            {art.title}
                           </RadioGroup.Label>
-                          <RadioGroup.Description
-                            as="span"
-                            className={`inline ${
-                              checked ? "text-zinc-300" : "text-zinc-500"
-                            }`}
-                          >
-                            <span>
-                              {plan.ram}/{plan.cpus}
-                            </span>{" "}
-                            <span aria-hidden="true">&middot;</span>{" "}
-                            <span>{plan.disk}</span>
+                          <RadioGroup.Description as="div">
+                            <img src={art.iiifthumburl} alt={art.title} />
                           </RadioGroup.Description>
                         </div>
                       </div>
@@ -97,10 +66,7 @@ const PickYourPreference: React.FC<PickYourPreferenceProps> = () => {
           </div>
         </RadioGroup>
       </div>
-      <Button
-        className="mt-4 max-w-2xl w-full"
-        onClick={() => onClick("silent")}
-      >
+      <Button className="mt-4 max-w-2xl w-full" onClick={onClick}>
         Next
       </Button>
     </div>

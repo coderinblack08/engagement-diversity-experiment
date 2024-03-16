@@ -9,15 +9,19 @@ factors:
       - value: 8
       - value: 13
 treatments:
-  - desc: Collaborative Filtering
+  - desc: "Collaborative Filtering"
     factors:
       playerCount: 1
     name: collaborative-filtering
-  - desc: Content Based Filtering
+  - desc: "Content Based Filtering"
     factors:
       playerCount: 1
     name: content-based-filtering
-  - desc: Popularity Based Filtering
+  - desc: "Popularity Based Filtering"
     factors:
       playerCount: 1
     name: popularity-based-filtering
+  - desc: "Random Based Filtering"
+    factors:
+      playerCount: 1
+    name: random-based-filtering

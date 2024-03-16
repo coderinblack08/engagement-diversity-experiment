@@ -26,8 +26,13 @@ export function Stage() {
     );
   }
 
-  if (stage.get("name")) {
-    return <PickYourPreference order={parseInt(stage.get("name"), 10)} />;
+  if (stage.get("name") && stage.get("method")) {
+    return (
+      <PickYourPreference
+        order={parseInt(stage.get("name"), 10)}
+        method={stage.get("method")}
+      />
+    );
   } else {
     return <Loading />;
   }
